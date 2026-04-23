@@ -3,90 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drishti | Premium Eyewear</title>
+    <title>Drishti | The Future of Vision</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;600&display=swap');
-        
-        body {
-            background: radial-gradient(circle at center, #2c0000 0%, #000000 100%);
-            color: #d4af37;
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-        }
-
-        .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-        }
-
-        .hero-title {
-            font-family: 'Cinzel', serif;
-            text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
-        }
-
-        .floating-frame {
-            animation: float 6s ease-in-out infinite;
-            filter: drop-shadow(0 20px 30px rgba(0,0,0,0.8));
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(2deg); }
-        }
-
-        .gold-button {
-            background: linear-gradient(45deg, #d4af37, #f2d47e);
-            color: #1a0000;
-            transition: all 0.3s ease;
-        }
-
-        .gold-button:hover {
-            transform: scale(1.05) translateY(-3px);
-            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.4);
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Outfit:wght@300;400;600&display=swap');
+        :root { --gold: #d4af37; --dark: #0a0a0a; }
+        body { background-color: var(--dark); color: white; font-family: 'Outfit', sans-serif; overflow-x: hidden; }
+        #canvas-container { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -1; }
+        .premium-blur { backdrop-filter: blur(20px); background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(212, 175, 55, 0.2); }
+        .hero-text { font-family: 'Cinzel', serif; letter-spacing: 0.2em; }
     </style>
 </head>
-<body class="min-h-screen flex items-center justify-center p-6">
+<body>
 
-    <div class="max-w-5xl w-full glass-card rounded-3xl p-8 md:p-16 flex flex-col md:flex-row items-center gap-12">
-        
-        <!-- Visual Section -->
-        <div class="w-full md:w-1/2 flex justify-center order-2 md:order-1">
-            <div class="relative">
-                <div class="absolute inset-0 bg-yellow-500 blur-[100px] opacity-20"></div>
-                <!-- Placeholder for Premium Frame -->
-                <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&q=80&w=800" 
-                     alt="Premium Frames" 
-                     class="floating-frame w-full max-w-sm rounded-lg relative z-10">
-            </div>
+    <!-- 3D BACKGROUND ENGINE -->
+    <div id="canvas-container"></div>
+
+    <!-- NAVIGATION -->
+    <nav class="p-6 flex justify-between items-center fixed w-full z-50 premium-blur">
+        <h1 class="hero-text text-2xl font-bold text-[#d4af37]">DRISHTI</h1>
+        <div class="space-x-8 text-sm uppercase tracking-widest hidden md:flex">
+            <a href="#frames" class="hover:text-[#d4af37]">Prescription</a>
+            <a href="#sunglasses" class="hover:text-[#d4af37]">Sunglasses</a>
+            <a href="#about" class="hover:text-[#d4af37]">Legacy</a>
         </div>
+        <button class="bg-[#d4af37] text-black px-6 py-2 rounded-full font-bold text-xs uppercase">Store</button>
+    </nav>
 
-        <!-- Content Section -->
-        <div class="w-full md:w-1/2 text-center md:text-left order-1 md:order-2">
-            <h2 class="text-sm tracking-[0.3em] uppercase mb-4 opacity-70">Legacy Collection 2026</h2>
-            <h1 class="hero-title text-5xl md:text-7xl font-bold mb-6">DRISHTI</h1>
-            <p class="text-xl text-gray-300 mb-8 leading-relaxed font-light">
-                Redefining the <span class="text-white font-semibold italic">Nazariya</span> of Indian luxury. 
-                Handcrafted frames for the visionaries of Pune and beyond.
+    <!-- HERO SECTION -->
+    <section class="h-screen flex items-center justify-center text-center">
+        <div class="p-12">
+            <h2 class="text-xs tracking-[0.5em] uppercase mb-4 opacity-60">Handcrafted Excellence</h2>
+            <h1 class="hero-text text-6xl md:text-9xl mb-8 leading-tight">Nazar Bhi<br><span class="text-[#d4af37]">Nazariya Bhi</span></h1>
+            <p class="max-w-2xl mx-auto text-gray-400 text-lg font-light leading-relaxed">
+                Premium eyewear engineered for the bold. From the streets of Pune to the heart of India, we redefine how you see the world.
             </p>
-            
-            <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                <a href="https://wa.me/919669603505?text=I+want+to+see+the+Premium+Collection" 
-                   class="gold-button px-10 py-4 rounded-full font-bold text-lg uppercase tracking-wider">
-                    Order via Nexa
-                </a>
-            </div>
-
-            <div class="mt-12 pt-8 border-t border-white/10 flex items-center gap-6 justify-center md:justify-start opacity-50">
-                <span class="text-xs tracking-widest">NEXA AGENTIC SOLUTIONS</span>
-                <span class="h-1 w-1 bg-yellow-600 rounded-full"></span>
-                <span class="text-xs tracking-widest">BANER, PUNE</span>
-            </div>
         </div>
-    </div>
+    </section>
 
+    <!-- SHOPPING SECTIONS -->
+    <main class="relative z-10 px-6 py-20 space-y-32">
+        
+        <!-- SECTION 1: PRESCRIPTION FRAMES -->
+        <section id="frames" class="max-w-7xl mx-auto">
+            <h3 class="hero-text text-3xl mb-12 text-[#d4af37]">Prescription Frames</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Product Card -->
+                <div class="premium-blur p-6 rounded-3xl group">
+                    <img src="https://images.unsplash.com/photo-1591076482161-42ce6da69f67?auto=format&fit=crop&w=500" class="rounded-2xl mb-4 group-hover:scale-105 transition duration-500">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <h4 class="font-bold text-lg">The Visionary Gold</h4>
+                            <p class="text-[#d4af37] font-semibold">₹4,999</p>
+                        </div>
+                        <button onclick="payWithRazorpay()" class="bg-white text-black p-3 rounded-full text-sm">Buy Now</button>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="premium-blur p-6 rounded-3xl group">
+                    <img src="https://images.unsplash.com/photo-1511499767390-903390e6fbc4?auto=format&fit=crop&w=500" class="rounded-2xl mb-4 group-hover:scale-105 transition duration-500">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <h4 class="font-bold text-lg">Midnight Acetate</h4>
+                            <p class="text-[#d4af37] font-semibold">₹3,499</p>
+                        </div>
+                        <button class="bg-white text-black p-3 rounded-full text-sm">Buy Now</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT US -->
+        <section id="about" class="max-w-4xl mx-auto text-center py-20">
+            <h3 class="hero-text text-4xl mb-8">The Drishti Legacy</h3>
+            <p class="text-xl text-gray-300 leading-loose italic">
+                "Born in the cultural heart of Pune, Drishti was founded on the belief that eyewear isn't an accessory—it's an identity. We merge traditional Indian craftsmanship with futuristic 3D engineering to deliver frames that feel like a second skin. Our mission is to scale this vision pan-India, bringing clarity and confidence to every doorstep."
+            </p>
+        </section>
+
+    </main>
+
+    <!-- 3D ENGINE SCRIPT -->
+    <script>
+        let scene = new THREE.Scene();
+        let camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+        let renderer = new THREE.WebGLRenderer({ alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+        // CREATE A ROTATING 3D SHAPE (Representing a Frame Element)
+        let geometry = new THREE.TorusGeometry(10, 3, 16, 100);
+        let material = new THREE.MeshBasicMaterial({ color: 0xd4af37, wireframe: true });
+        let torus = new THREE.Mesh(geometry, material);
+        scene.add(torus);
+
+        camera.position.z = 30;
+
+        function animate() {
+            requestAnimationFrame(animate);
+            torus.rotation.x += 0.01;
+            torus.rotation.y += 0.005;
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // PAYMENT INTEGRATION PLACEHOLDER
+        function payWithRazorpay() {
+            alert("Redirecting to Pan-India Payment Secure Gateway (Razorpay/Stripe)...");
+            // Integration logic for Razorpay/Stripe would go here
+        }
+    </script>
 </body>
 </html>
